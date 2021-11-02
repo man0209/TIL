@@ -36,7 +36,39 @@
 -   두번째 파라미터가 음수이면 0번 째 인덱스부터 시작.
 -   두번째 파라미터가 NaN이면 0부터 시작.
 
-# toUppercase()
+# toUpperCase()
 
 -   영문 소문자를 대문자로 변환
-    -   ex) `console.log("abcde".toUppercase());` / ABCDE
+    -   ex) `console.log("abcde".toUpperCase());` / ABCDE
+
+# toLowerCase()
+
+-   영문 대문자를 소문자로 변환
+    -   ex) `console.log("ABCDE".toLowerCase());` / abcde
+
+# substring(a,b)
+
+-   a인덱스부터 b인덱스 전까지 즉 (b-1) 까지
+    -   ex) `var example = "01234567";` <br>
+        `console.log(example.substring(2,5));` / 234
+-   b를 작성하지 않으면 a부터 끝까지 반환
+    -   ex) `console.log(example.substring(2));` / 234567
+-   a, b 둘 다 작성하지 않으면 전체 반환
+    -   ex) `console.log(example.substring());` / 01234567
+
+# substr(a,b)
+
+-   a인덱스부터 b개 까지
+    -ex) `console.log(example.substr(1,4));` / 1234
+-   a가 음수이면 length에서 a를 더해 시작 인덱스로 사용
+    -ex) `console.log(example.substr(-3,3));` / 567
+
+# slice(a,b)
+
+-   a인덱스부터 b인덱스 전까지
+    -   `console.log(example.slice(1,4));` / 123
+
+# split(a)
+
+-   분리 대상을 a(분리자)로 분리하여 **배열**로 반환
+    -   ex) `console.log("12_34_56".split("_"));` / \_분리자 [12,34,56]
