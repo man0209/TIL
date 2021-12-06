@@ -227,7 +227,71 @@ void *memmove(void *dst, const void *src, size_t len)
 ```
 ---
 # strlcpy.c
-- 
+- dst에 src의 dstsize만큼 복사하는 함수.
+- strncpy 와 다른 점은?
+	- strncpy 는 src의 길이가 dstsize보다 작을 경우 남은 공간을 NULL로 다 채운다.
+	- strncpy 는 src의 길이가 dstsize보다 클 경우 마지막에 NULL을 넣지 않아 보안상? 위험해질 수 있다.
+	- strlcpy 는 src의 길이가 dstsize보다 작을 경우 src의 끝에 NULL하나만 넣는다.
+	- strlcpy 는 src의 길이가 dstsize보다 클 경우 dstsize만큼 복사하고 마지막에 NULL을 추가해준다.
+- 자료형이 size_t인 dstsize의 값이 음수가 되면 버퍼오버플로우 (size_t는 unsigned형으로 선언되어 있기 때문)가 일어난다.
+- 컴파일러에 따라서 경고메시지를 출력해주기도 한다. 대부분 컴파일러에서 abort오류가 일어난다.
+
+```
+size_t strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t src_len;
+	size_t i;
+
+	src_len = strlen(src);
+	i = 0;
+
+	while (i < src_len && i + 1 < dstsize)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (dstsize > 0)
+		dst[i] = '\0';
+	return (src_len);
+}
+```
+---
+# strlcat.c
+- dst 뒤에 src를 붙여서 원하는 길이(dstsize)를 만드는 함수.
+- strncat 와 다른 점은??
+	- strncat 은 세번 째 인자(dstsize)가 src에서 복사하고 싶은 길이('\0'제외).
+	- strncat 함수는 원하는 길이(dstsize)만큼의 소스(src)를 문자열(dst)에 붙이는 함수.
+	- strlcat 함수는 dstsize 가 dst_len(길이)보다 작을 경우와 아닐 경우 반환값(return)이 다르다.
+		- dstsize < dst_len
+			- src_len + dstsize 리턴
+		- 그 외 
+			- dst_len + src_len 리턴
+
+```
+size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t dst_len;
+	size_t src_len;
+	size_t i;
+
+	i = 0;
+	dst_len = strlen(dst);
+	src_len = strlen(src);
+	
+	if (dstsize <= dst_len)
+		return (dstsize + src_len);
+	while (src[i] && dst_len + i + 1 < dstsize)
+	{
+		dst[dst_len + 1] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = '\0';
+	return (src_len + dst_len);
+}
+```
+---
+# 
+	
 
 
 
