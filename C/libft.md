@@ -165,6 +165,7 @@ void *memset(void *b, int c, size_t len)
 - memcpy함수는 src의 널 종료문자(null terminating character)을 검사하지 않는다. 언제나 정확히 num바이트 만큼을 복사한다.
 - 만약 dst 와 src의 메모리가 겹치게 되면 오버랩 현상이 일어나기 때문에 memmove 함수를 이용하는 것이 좋다.
 - 자료형이 size_t인 size의 값이 음수가 되면 버퍼오버플로우(size_t는 unsigned형으로 선언되어 있기 때문)가 일어난다. 컴파일러에 따라서 경고메시지를 출력해주기도 한다. 대부분 컴파일러에서 abort오류가 일어난다.
+- memcpy(a, b, 10) 일 경우 a가 10 보다 크기가 작을 경우 오버플로우 발생함. dst buffer 보다 size argument 가 크기 때문.
 
 ```
 void *memcpy(void *dst, const void *src, size_t n)
@@ -290,7 +291,50 @@ size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
 }
 ```
 ---
+# strchr.c
+```
+char *strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char )c)
+			return ((char *) s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *) s);
+	return (0);
+}
+```
+- *s 문자열에서 c를 앞에서부터(인덱스 0부터) 찾아 그 주소값을 리턴하는 함수.
+- 문자열에 c가 없으면 NULL(0)을 리턴.
+- 만약 c가 NULL이면 문자열을 다 돌고 문자열 마지막 NULL이 있는 주소값 리턴.
+---
+# strrchr.c
+```
+char *ft_strrchr(const char *s, int c)
+{
+	char *startPoint;
+
+	startPoint = (char *) s;
+	while (*s) 
+		s++;
+	while (s > startPoint)
+	{
+		s--;
+		if (*s == (char ) c)
+			return ((char *) s);
+
+	}
+	return (0);
+}
+```
+- strrchr 함수는 c를 뒤에서부터 찾는 함수.
+- 뒤에서부터 찾기 때문에 char *s의 첫번째 주소를 따로 저장해 놓는다.
+
+---
 # 
+
 	
 
 
