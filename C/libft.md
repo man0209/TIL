@@ -166,7 +166,7 @@ void *memset(void *b, int c, size_t len)
 - 만약 dst 와 src의 메모리가 겹치게 되면 오버랩 현상이 일어나기 때문에 memmove 함수를 이용하는 것이 좋다.
 - 자료형이 size_t인 size의 값이 음수가 되면 버퍼오버플로우(size_t는 unsigned형으로 선언되어 있기 때문)가 일어난다. 컴파일러에 따라서 경고메시지를 출력해주기도 한다. 대부분 컴파일러에서 abort오류가 일어난다.
 - memcpy(a, b, 10) 일 경우 a가 10 보다 크기가 작을 경우 오버플로우 발생함. dst buffer 보다 size argument 가 크기 때문.
-
+- dst가 null이고 dstsize가 1일 경우src에서 1개만 들어간다?
 ```
 void *memcpy(void *dst, const void *src, size_t n)
 {
