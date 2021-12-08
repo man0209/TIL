@@ -14,6 +14,7 @@ int atoi(const char *str);
 <summary>접기/펼치기</summary>
 <!--summary 아래 빈칸 공백 두고 내용을 적는공간-->
 
+```
 static int	is_space(char c)
 {
 	if (c == '\n' || c == '\t' || c == '\v' \
@@ -44,5 +45,6 @@ int	atoi(const char *str)
 	}
 	return (result * minus);
 }
+```
 </details>
 
