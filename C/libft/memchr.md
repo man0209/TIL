@@ -33,7 +33,7 @@ void	*memchr(const void *s, int c, size_t n)
 
 	tmp_s = (unsigned char *) s;
 	i = 0;
-	while (*tmp_s && (i < n)) // s가 NULL이면 segmentation falue 떠야 되니까 s에 NULL이 들어가는거 막으면 안되나? 안되면 내일 *tmp_s 
+	while (i < n)
 	{
 		if (*tmp_s == (unsigned char) c)
 			return (tmp_s);
