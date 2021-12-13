@@ -8,4 +8,26 @@ char  *strdup(const char *s1);
 <details markdown="1">
 <summary>접기/펼치기</summary>
 <!--summary 아래 빈칸 공백 두고 내용을 적는공간-->
+
+```
+char	*strdup(const char *s1)
+{
+	char	*tmp;
+	int		cnt;
+	int		i;
+
+	i = 0;
+	cnt = ft_strlen(s1);
+	tmp = (char *)malloc(sizeof(char) * cnt + 1);
+	if (tmp == NULL)
+		return (0);
+	while (s1[i] != '\0')
+	{
+		tmp[i] = s1[i];
+		i++;
+	}
+	tmp[i] = '\0';
+	return (tmp);
+}
+```
 </details>
