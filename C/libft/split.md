@@ -100,7 +100,7 @@ static void	words_small(char const *s, char c, char **words_big)
 	words_big[small_i] = NULL; // 마지막에 NULL포인터 추가
 }
 
-char	**ft_split(char const *s, char c)
+char	**split(char const *s, char c)
 {
 	char			**words_big;
 	size_t			small_cnt;
