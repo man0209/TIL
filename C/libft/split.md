@@ -23,11 +23,11 @@ static	size_t	count_word(char const *s, char c)
 	size_t	i;
 
 	cnt = 0;
-	flag = 0;
+	flag = 0; 
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] != c && flag == 0)
+		if (s[i] != c && flag == 0) // 
 		{
 			cnt ++;
 			flag = 1;
@@ -58,7 +58,7 @@ static char	*split_and_allocate(char const *s, size_t len)
 	return (word);
 }
 
-static size_t	free_all(char **words, size_t len)
+static void	free_all(char **words, size_t len)
 {
 	size_t	i;
 
@@ -68,7 +68,6 @@ static size_t	free_all(char **words, size_t len)
 		free(words[i]);
 		i++;
 	}
-	return (0);
 }
 
 // 구분자에 의해 쪼개진 문자열의 길이를 구하고 해당 길이만큼 이차원 배열의 각각 인덱스에 1차원 배열로 넣는 함수
@@ -80,7 +79,7 @@ static void	words_small(char const *s, char c, char **words_big)
 
 	i = 0;
 	small_i = 0;
-	while (s[i] != '\0')
+	while (s[i] != '\0')  // i는 0으로 초기화 하지 않는다.
 	{
 		while (s[i] == c)
 			i++;
