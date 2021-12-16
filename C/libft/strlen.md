@@ -1,6 +1,7 @@
 # strlen.c
 - 문자열의 길이를 반환.
 - 맨 끝 널은 제외.
+- str에 NULL 넣으면 segmentation fault 뜬다. 
 
 <details markdown="1">
 <summary>접기/펼치기</summary>
