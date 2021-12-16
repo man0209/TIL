@@ -25,8 +25,8 @@ static int	is_space(char c)
 
 int	atoi(const char *str)
 {
-	int	minus;
-	int	result;
+	long long	minus;
+	unsigned long long	result;
 
 	minus = 1;
 	result = 0;
@@ -41,9 +41,13 @@ int	atoi(const char *str)
 	while (*str >= '0' && *str <= '9')
 	{
 		result = (result * 10) + (*str - '0');
+		if (result > 9223372036854775807 && minus == 1)
+			return (-1);
+		else if (result > 9223372036854775807 && minus == -1)
+			return (0);
 		str++;
 	}
-	return (result * minus);
+	return ((int)(result * minus);
 }
 ```
 </details>
