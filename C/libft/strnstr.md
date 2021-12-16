@@ -12,6 +12,7 @@ char *strnstr(const char *haystack, const char *needle, size_t len);
 <summary>접기/펼치기</summary>
 <!--summary 아래 빈칸 공백 두고 내용을 적는공간-->
 
+```
 char	*strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
@@ -40,4 +41,5 @@ char	*strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (0);
 }
+```
 </details>
