@@ -34,7 +34,7 @@ void *memset(void *b, int c, size_t len)
 	i = 0;
 	while(i < len)
 		temp[i++] = (unsigned char)c;
-	return (temp);
+	return ((void *)temp);
 }
 ```
 </details>
