@@ -13,26 +13,16 @@ void  striteri(char *s, void (*f)(unsigned int, char*))
 <!--summary 아래 빈칸 공백 두고 내용을 적는공간-->
 
 ```
-char	*strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	size_t	i;
-	size_t	len;
-	char	*tmp;
 
-	if (s == NULL)
-		return (0);
 	i = 0;
-	len = ft_strlen(s);
-	tmp = (char *)malloc(sizeof(char) * len + 1);
-	if (tmp == NULL)
-		return (0);
-	while (i < len)
+	while (s[i] != '\0')
 	{
-		tmp[i] = (*f)(i, s[i]);
+		f(i, &s[i]);
 		i++;
 	}
-	tmp[i] = '\0';
-	return (tmp);
 }
 ```
 </details>
