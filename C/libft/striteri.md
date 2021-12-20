@@ -13,10 +13,12 @@ void  striteri(char *s, void (*f)(unsigned int, char*))
 <!--summary 아래 빈칸 공백 두고 내용을 적는공간-->
 
 ```
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	striteri(char *s, void (*f)(unsigned int, char*))
 {
 	size_t	i;
 
+	if (s == NULL || f == NULL)
+		return ;
 	i = 0;
 	while (s[i] != '\0')
 	{
