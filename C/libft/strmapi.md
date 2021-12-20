@@ -20,7 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	size_t	len;
 	char	*tmp;
 
-	if (s == NULL) // s가 NULL이면 함수를 적용할 문자가 없으니 함수 종료.
+	if (s == NULL || f == NULL) // s가 NULL이면 함수를 적용할 문자가 없으니 함수 종료.
 		return (0);
 	i = 0;
 	len = ft_strlen(s);
