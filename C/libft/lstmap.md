@@ -13,30 +13,32 @@ t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 <!--summary 아래 빈칸 공백 두고 내용을 적는공간-->
 
 ```
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*result;
+	t_list	*new_head;
+	t_list	*new_next;
 	t_list	*tmp;
 
-	if (lst == NULL)
+	if (lst == NULL || f == NULL)
 		return (0);
-	tmp = ft_lstnew(f(lst->content));
-	if (tmp == NULL)
+	new_head = ft_lstnew(f(lst->content));
+	if (new_head == NULL)
 		return (0);
+	tmp = new_head;
 	lst = lst->next;
-	result = tmp;
 	while (lst != NULL)
 	{
-		ft_lstadd_back(&tmp, ft_lstnew(f(lst->content)));
-		tmp = tmp->next;
-		if (tmp == NULL)
+		new_next = ft_lstnew(f(lst->content));
+		if (new_next == NULL)
 		{
-			ft_lstclear(&result, del);
+			ft_lstclear(&new_head, del);
 			return (0);
 		}
+		tmp->next = new_next;
+		tmp = new_next;
 		lst = lst->next;
 	}
-	return (result);
+	return (new_head);
 }
 ```
 </details>
