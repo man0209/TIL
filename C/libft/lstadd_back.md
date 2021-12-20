@@ -15,6 +15,7 @@ void  lstadd_back(t_list **lst, t_list *new);
 <!--summary 아래 빈칸 공백 두고 내용을 적는공간-->
 
 ```
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list *last;
 
