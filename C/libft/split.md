@@ -23,11 +23,11 @@ static	size_t	count_word(char const *s, char c)
 	size_t	i;
 
 	cnt = 0;
-	flag = 0; 
+	flag = 0;
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] != c && flag == 0) // 
+		if (s[i] != c && flag == 0)
 		{
 			cnt ++;
 			flag = 1;
@@ -39,7 +39,6 @@ static	size_t	count_word(char const *s, char c)
 	return (cnt);
 }
 
-// 구분자에 의해 나눠진 문자열 메모리 할당하는 함수
 static char	*split_and_allocate(char const *s, size_t len)
 {
 	char	*word;
@@ -59,6 +58,7 @@ static char	*split_and_allocate(char const *s, size_t len)
 }
 
 static void	free_all(char **words, size_t len)
+
 {
 	size_t	i;
 
@@ -68,10 +68,10 @@ static void	free_all(char **words, size_t len)
 		free(words[i]);
 		i++;
 	}
+	free(words);
 }
 
-// 구분자에 의해 쪼개진 문자열의 길이를 구하고 해당 길이만큼 이차원 배열의 각각 인덱스에 1차원 배열로 넣는 함수
-static void	words_small(char const *s, char c, char **words_big)
+static char	**words_small(char const *s, char c, char **words_big)
 {
 	size_t	start;
 	size_t	i;
@@ -79,24 +79,25 @@ static void	words_small(char const *s, char c, char **words_big)
 
 	i = 0;
 	small_i = 0;
-	while (s[i] != '\0')  // i는 0으로 초기화 하지 않는다.
+	while (s[i] != '\0')
 	{
 		while (s[i] == c)
 			i++;
 		if (s[i] == '\0')
-			break; // 구분자로만 이루어진 문자열이어서 
+			break ;
 		start = i;
 		while (s[i] != c && s[i] != '\0')
-			i++; // start부터 구분자 까지의 길이, 즉 구분자로 나눠진 문자열의 길이?
-		words_big[small_i] = split_and_allocate(s + start, i - start); // 구분자로 나눠진 문자열의 첫 주소를 찾기위해
-		if (words_big[small_i] == NULL) // i - start : 구분자로 나눠진 문자열 길이 구하는 식
+			i++;
+		words_big[small_i] = split_and_allocate(s + start, i - start);
+		if (words_big[small_i] == NULL)
 		{
 			free_all(words_big, small_i);
-			return ;
+			return (0);
 		}
 		small_i++;
 	}
-	words_big[small_i] = NULL; // 마지막에 NULL포인터 추가
+	words_big[small_i] = NULL;
+	return (words_big);
 }
 
 char	**split(char const *s, char c)
@@ -107,10 +108,12 @@ char	**split(char const *s, char c)
 	if (s == NULL)
 		return (0);
 	small_cnt = count_word(s, c);
-	words_big = (char c**)malloc(sizeof(char *) * (small_cnt + 1));
+	words_big = (char **)malloc(sizeof(char *) * (small_cnt + 1));
 	if (words_big == NULL)
 		return (0);
-	words_small(s, c, words_big);
+	words_big = words_small(s, c, words_big);
+	if (words_big == NULL)
+		return (0);
 	return (words_big);
 }	
  ```
