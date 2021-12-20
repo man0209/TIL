@@ -14,28 +14,28 @@ strdup(“”)처럼 빈 문자열을 굳이 힙에 할당하여 리턴하는 �
 <!--summary 아래 빈칸 공백 두고 내용을 적는공간-->
 
 ```
-char	*ft_strtrim(char const *s1, char const *set)
+char	*strtrim(char const *s1, char const *set)
 {
 	char	*cp;
 	size_t	start;
 	size_t	end;
 
 	start = 0;
-	end = ft_strlen(s1);
 	if (s1 == NULL)
 		return (0);
-	if (set == NULL) // 예기치 않게 set에 NULL이 들어가는 경우 나중에 반환값을 사용하는 라인에서 segfault가 뜨며 사용자가 이를 알 수 있다는 점?
-		return (NULL);
+	if (set == NULL)
+		return (0);
+	end = ft_strlen(s1);
 	while (s1[start] != '\0' && ft_strchr(set, s1[start]))
 		start++;
-	while (end && s1[end - 1] != '\0' && ft_strchr(set, s1[end - 1]))
+	while (end && ft_strchr(set, s1[end - 1])) // end-1부터 비교 시작해서 비교를 한번 덜하기 때문에 동적할당할 때 +1로 해준다.
 		end--;
-	if (start > end) // ""는 문자열 리터럴이라 함수가 종료되면 메모리 공간이 날아감. ft_strdup("")으로 리턴하게 되면 문자열 리터럴을 사용하는건 같지만 힙 메모리에 할당해서 리턴.
-		return (ft_strdup("")); // 그래서 함수 종료 이후에 전자는 접근 불가, 후자는 가능.
-	cp = (char *)malloc(sizeof(char) * (end - start) + 1);
+	if (start >= end)
+		return (ft_strdup(""));
+	cp = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (cp == NULL)
 		return (0);
-	cp = ft_substr(s1, start, end - start);
+	ft_strlcpy(cp, s1 + start, end - start + 1);
 	return (cp);
 }
 ```
