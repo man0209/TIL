@@ -100,5 +100,23 @@
 - L$(HOME)/libs -labc
 -I dir , --include-dir = dir
 포함된 메이크파일을 검색할 디렉토리 디렉토리 를 지정합니다 . 여러 -I 옵션을 사용하여 여러 디렉토리를 지정하는 경우 지정된 순서대로 디렉토리를 검색합니다. make 의 다른 플래그에 대한 인수와 달리 -I 플래그가 지정된 디렉토리 는 플래그 바로 뒤에 올 수 있습니다. -I dir 및 -I dir 이 허용됩니다 . 이 구문은 C 전처리기의 -I 플래그와의 호환성을 위해 허용됩니다.
+- 다른 서브 디렉토리의 라이브러리를 가져다 쓸 경우 컴파일 전 Make -C $(디렉토리)로 컴파일 후 가져다 써야 링킹 오류가 안생긴다.
 
+```
+FT = ../library/printf/
+FTLNK = -L $(FT) -lftprintf
 
+$(TARGET) = $(DEPENDENCY)
+	gcc -Wall -Wextra -Werror $(FTLNK) $^ -o $@
+MAKE -C $(FT) // 오류 O	
+```
+
+```
+MAKE -C $(FT) // 오류 X
+FT = ../library/printf/
+FTLNK = -L $(FT) -lftprintf
+
+$(TARGET) = $(DEPENDENCY)
+	gcc -Wall -Wextra -Werror $(FTLNK) $^ -o $@
+	
+```
