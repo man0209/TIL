@@ -2,8 +2,13 @@
 
 # Today I Learned
 
--   좋은 개발자가 되기 위해 하루동안 학습한 내용이나 개발관련 경험들을 기록으로 남긴다.
+-   하루동안 학습한 내용이나 개발관련 경험들을 기록으로 남긴다.
 
-# 작성 규칙
+# ETC
+- [Markdown](https://github.com/man0209/TIL/blob/main/Markdown/Markdown.md)
 
--   폴더와 파일명은 영문으로 작성한다.
+
+# JS
+-
+
+# 자료구조
