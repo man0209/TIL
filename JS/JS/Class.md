@@ -42,3 +42,15 @@
 
 ![image](https://user-images.githubusercontent.com/69157076/167442488-64c98ebf-5084-4bec-929e-25c2063b44e4.png)
 
+# 상속
+- 클래스를 상속을 통해 확장 할 수 있다.
+- 클래스마다 공통된 속성이나 행동이 있다면 상속을 통해 중복을 최소화 할 수 있다.
+- extends 명령어를 통해 삭송 가능.
+
+![image](https://user-images.githubusercontent.com/69157076/167767044-2ac36609-663e-43b2-8283-cdf87ce09a95.png)
+
+![image](https://user-images.githubusercontent.com/69157076/167767081-b77e9c4f-62a6-4cdb-b6c7-04765bc04890.png)
+
+![image](https://user-images.githubusercontent.com/69157076/167768006-96d84033-a007-489e-97dd-2da1fc4d7d8f.png)
+
+![image](https://user-images.githubusercontent.com/69157076/167768026-a11543d6-973e-466c-9bfb-b3a01df70a06.png)
