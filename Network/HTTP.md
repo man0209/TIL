@@ -15,6 +15,9 @@
 
 - POST (서버에다가 데이터를 주는게 목적)
   - 클라이언트가 서버에 어떤 정보(데이터)를 보낼 때 사용
+  - 데이터 전송 길이에 대한 제한이 없음
+  - HTTP REQUEST BODY에 데이터를 담으므로 노출 안됨, 보안성이랑은 상관 없음. 암호화를 할 수 있는 프로토콜이 추가되어야 안전.
+  - HTTPS = HTTP + SSL(secure socket layer), 서버에 SSL을 추가해야 안전. 
   - PUT vs POST
     - PUT은 서버의 Resource에 Data를 저장하기 위한 용도
     - POST는 서버에 DATA를 보내기 위한 용도   
